@@ -9,6 +9,7 @@ st.write("製品の故障解析: weibull")
 st.subheader("需要予測、価格予測")
 
 st.subheader("AIチャット")
+st.write("生成AIとのチャット: AI_Chat")
 
 
 
