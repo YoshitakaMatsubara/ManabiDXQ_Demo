@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from matplotlib import pyplot as plt
 import seaborn as sns
-import japanize_matplotlib
+#import japanize_matplotlib
 import numpy as np
 
 st.header("ワイブルプロットによる故障の解析")
