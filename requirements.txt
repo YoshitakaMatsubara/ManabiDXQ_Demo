@@ -4,3 +4,10 @@ matplotlib
 seaborn
 numpy
 google-generativeai
+
+anomalib
+lightning
+kornia
+FrEIA @ git+https://github.com/VLL-HD/FrEIA.git
+python-dotenv
+open_clip_torch
