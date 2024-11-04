@@ -5,8 +5,8 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 import numpy as np
 
-
-#st.set_page_config(layout="wide")
+# if st.checkbox("ワイド表示"):
+#     st.set_page_config(layout="wide")
 
 st.header("ワイブルプロットによる故障の解析")
 
@@ -14,7 +14,13 @@ st.subheader("故障のデータ")
 st.write("Time: 評価時間")
 st.write("Failure: 故障の有無(0: 故障していない　1: 故障発生)")
 
-df = pd.read_csv("./data/Weibull_plot/Weibull_Failure_Data.csv")
+shape_param = st.slider("形状パラメータ", 0.0, 5.0, 1.5)
+scale_param = st.slider("尺度パラメータ", 1, 10000, 1000)
+num_samples = st.slider("サンプル数", 1, 200, 100)
+
+df = pd.DataFrame(np.random.weibull(shape_param, num_samples) * scale_param, columns=["Time"])
+
+#df = pd.read_csv("./data/Weibull_plot/Weibull_Failure_Data.csv")
 
 col1, col2 = st.columns(2)
 
@@ -23,11 +29,11 @@ with col2:
 
 with col1:
     fig, ax = plt.subplots()
-    #sns.histplot(df["Time"], kde=False, ax=ax)
-    sns.histplot(df[df["Failure"]==1]["Time"], kde=False, ax=ax, color="#DD8452", edgecolor="none", alpha=0.5, label="1")
-    sns.histplot(df[df["Failure"]==0]["Time"], kde=False, ax=ax, color="#4C72B0", edgecolor="none", alpha=0.5, label="0")
+    sns.histplot(df["Time"], kde=False, ax=ax)
+    #sns.histplot(df[df["Failure"]==1]["Time"], kde=False, ax=ax, color="#DD8452", edgecolor="none", alpha=0.5, label="1")
+    #sns.histplot(df[df["Failure"]==0]["Time"], kde=False, ax=ax, color="#4C72B0", edgecolor="none", alpha=0.5, label="0")
     
-    plt.xlim(0, 2500)  # x軸の範囲を0から3000に設定
+    plt.xlim(0, max(df["Time"]))
     ax.set_title("Data Distribution")
     plt.legend()
     
@@ -39,7 +45,7 @@ st.subheader("解析結果")
 col1, col2 = st.columns(2)
 
 with col1:
-    failure_data = df[df['Failure'] == 1]['Time'].sort_values().values
+    failure_data = df['Time'].sort_values().values
     num_failures = len(failure_data)
     rank = np.arange(1, num_failures + 1)
     failure_probability = (rank - 0.3) / (num_failures + 0.4)
