@@ -1,6 +1,9 @@
 from anomalib.data import MVTec
 from anomalib.models import Patchcore
 from anomalib.engine import Engine
+import streamlit as st
+
+st.header("作成中")
 
 datamodule = MVTec()
 model = Patchcore()

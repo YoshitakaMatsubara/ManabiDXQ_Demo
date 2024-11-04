@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import streamlit as st
 
-st.title("Gemini AI Chat")
+st.title("(作成中)Gemini AI 文書生成用")
 st.write("このアプリはGoogleの生成AI Geminiを使用しています。")
 st.write("生成内容の正確性は保証されないため、重要な決定には専門家の助言を得てください。")
 st.write("また、入力内容や生成物の利用はご自身の責任でお願いいたします。")
